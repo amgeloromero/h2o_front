@@ -28,7 +28,11 @@ $.ajax({
 		alert(datos);
        //alert( "Se guardaron los datos: " + datos);
 	   $('.preloader-wrapper').fadeOut(0);
-      }
+      },
+	   error: function(objeto, quepaso, otroobj){
+           // alert("Estas viendo esto por que fallé");
+            alert("Pasó lo siguiente: "+quepaso);
+        },
 });
 }
 </script>
@@ -38,18 +42,20 @@ $.ajax({
 </head>
 
 <body>
-<nav class="top-nav col s9">
+ <div class="container">
+<nav class="top-nav col s4">
         <div class="container">
           <div class="nav-wrapper"><a class="page-title">H2o toma de lectura</a></div>
         </div>
       </nav>
+	  <br />  <br />
 <div class="row">
     <form name="sub_form" class="col s9" id="sub_form">
       <div class="row">
         <div class="input-field">
           <input name="numero_medidor" type="text" class="validate"  id="numero_medidor">
           <label for="first_name">Numero de medidor</label>
-        </div>
+        </div>  <br />  <br />
         <div class="input-field col s9">
           <input name="lectura_medidor" type="text" class="validate" id="lectura_medidor">
           <label for="last_name">Lectura actual</label>
@@ -77,6 +83,6 @@ $.ajax({
       </div>
     </div>
   </div>
-      
+      </div>
 </body>
 </html>
