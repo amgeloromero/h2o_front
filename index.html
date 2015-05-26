@@ -5,19 +5,19 @@
 <script src="js1/jquery-migrate-1.2.1.min.js"></script>
 
  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="css/materialize.min.css">
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
   
   <!-- Compiled and minified JavaScript -->
-  <script src="js/materialize.min.js">
+<!--  <script src="js/materialize.min.js">-->
   
   </script><script language="JavaScript" type="text/javascript">
   
 $( document ).ready(function() {
-$('.preloader-wrapper').fadeOut(0);
+$('#loader').fadeOut(0);
 });
 function submiter(){
 
-$('.preloader-wrapper').fadeIn(0);
+$('#loader').fadeIn(0);
 var submiter=$('#sub_form').serialize();
 
 $.ajax({
@@ -27,11 +27,12 @@ $.ajax({
         success: function(datos){
 		alert(datos);
        //alert( "Se guardaron los datos: " + datos);
-	   $('.preloader-wrapper').fadeOut(0);
+	  $('#loader').fadeOut(0);
       },
 	   error: function(objeto, quepaso, otroobj){
-           // alert("Estas viendo esto por que fallé");
-            alert("Pasó lo siguiente: "+quepaso);
+           alert("No esta conectado a la red");
+		   $('#loader').fadeOut(0);
+            //alert("Pasó lo siguiente: "+quepaso);
         },
 });
 }
@@ -42,6 +43,52 @@ $.ajax({
 </head>
 
 <body>
+
+
+<form class="form" name="sub_form"  id="sub_form">
+			  
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title"><h3 style="color:#FFFFFF">Ingreso lectura</h3>
+  </div>
+  
+  <div class="panel-body">
+
+	<br />	<br />
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label"><h5>Numero medidor</h5></label>
+      <div class="col-lg-10">
+        <input name="lectura" type="text" class="form-control" id="inputEmail" placeholder="Numero medidor">
+      </div>
+    </div>
+	<br />	<br />
+    <div class="form-group">
+      <label for="inputPassword" class="col-lg-2 control-label"><h5>Lectura</h5></label>
+      <div class="col-lg-10">
+        <input  class="form-control" placeholder="Lectura"  name="lectura_medidor" type="text"  id="lectura_medidor">
+        <div class="checkbox">        </div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button  class="btn btn-primary btn-lg" onclick="submiter();" type="button">Guardar lectura</button>&nbsp;<img src="css/hex-loader2.gif" name="loader" width="150" height="100" id="loader"  /></div>
+    </div>
+
+
+
+
+
+
+  </div>
+</div>
+ 
+</form>
+
+
+<!--
  <div class="container">
 <nav class="top-nav col s4">
         <div class="container">
@@ -62,9 +109,7 @@ $.ajax({
         </div>
       </div>
 	<div class="input-field col s6">
-          <!--  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-    <i class="mdi-content-send right"></i>
-  </button>-->
+
    <button name="btn" type="button" class="btn-floating btn-large waves-effect waves-light red" onclick="submiter();" ><i class="mdi-content-add"></i></button>
       </div>
 		 
@@ -83,6 +128,6 @@ $.ajax({
       </div>
     </div>
   </div>
-      </div>
+      </div>-->
 </body>
 </html>
