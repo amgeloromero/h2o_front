@@ -14,6 +14,10 @@
   
 $( document ).ready(function() {
 $('#loader').fadeOut(0);
+$('#mensaje').fadeOut(0);
+$('#msj_fin').html('');
+$('#tipoalerta').html('');
+
 });
 function submiter(){
 
@@ -25,8 +29,21 @@ $.ajax({
         url: "http://alianzchile.cl/toma_lectura_back/",
         data: submiter,
         success: function(datos){
-		alert(datos);
+		//alert(datos);
+		 $('#mensaje').removeClass('alert-success alert-danger');
        //alert( "Se guardaron los datos: " + datos);
+	   if(datos!=''){
+	   $('#msj_fin').html(datos);
+	   $('#mensaje').fadeIn(0);
+	   $('#mensaje').addClass('alert-success');
+	   $('#tipoalerta').html('Datos encontrados!');
+	   }else{
+	   $('#tipoalerta').html('Advertencia!');
+	    $('#msj_fin').html('no hay datos');
+	   $('#mensaje').fadeIn(0);
+	   $('#mensaje').addClass('alert-danger');
+	   }
+	   $('#mensaje').delay( 5000 ).fadeOut('slow');
 	  $('#loader').fadeOut(0);
       },
 	   error: function(objeto, quepaso, otroobj){
@@ -54,7 +71,7 @@ $.ajax({
   
   <div class="panel-body">
 
-	<br />	<br />
+	
     <div class="form-group">
       <label for="inputEmail" class="col-lg-2 control-label"><h5>Numero medidor</h5></label>
       <div class="col-lg-10">
@@ -75,6 +92,23 @@ $.ajax({
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <button  class="btn btn-primary btn-lg" onclick="submiter();" type="button">Guardar lectura</button>&nbsp;<img src="css/hex-loader2.gif" name="loader" width="150" height="100" id="loader"  /></div>
+    </div>
+
+<br /><br /><br />
+
+
+
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+
+<div class="alert alert-dismissible" id="mensaje">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <h4 id="tipoalerta"></h4>
+  <p id="msj_fin"></p>
+</div>
+
+
+</div>
     </div>
 
 
